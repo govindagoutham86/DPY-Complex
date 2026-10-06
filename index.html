@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DPY Complex — Premium Retail Spaces</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#15130F;
+    --ink-soft:#211E18;
+    --bone:#F4EEE3;
+    --bone-dim:#E7DFCF;
+    --brass:#C9A24B;
+    --brass-deep:#9C7A33;
+    --line: rgba(244,238,227,0.14);
+    --line-strong: rgba(244,238,227,0.28);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--ink);
+    color:var(--bone);
+    font-family:'Manrope',sans-serif;
+    font-weight:400;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.serif{font-family:'Fraunces',serif;font-weight:500;}
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 32px;}
+  ::selection{background:var(--brass);color:var(--ink);}
+
+  /* ---------- nav ---------- */
+  header{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    background:rgba(21,19,15,0.82);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:20px 32px;max-width:1180px;margin:0 auto;
+  }
+  .logo{font-family:'Fraunces',serif;font-size:20px;letter-spacing:0.02em;}
+  .logo span{color:var(--brass);}
+  .navlinks{display:flex;gap:36px;font-size:14px;letter-spacing:0.03em;}
+  .navlinks a{opacity:0.8;transition:opacity .2s;position:relative;}
+  .navlinks a:hover{opacity:1;}
+  .nav-cta{
+    border:1px solid var(--brass);color:var(--brass);
+    padding:9px 20px;font-size:13px;letter-spacing:0.04em;
+    transition:background .2s, color .2s;
+  }
+  .nav-cta:hover{background:var(--brass);color:var(--ink);}
+  .menu-toggle{display:none;}
+
+  /* ---------- hero ---------- */
+  .hero{
+    min-height:100vh;
+    display:flex;flex-direction:column;justify-content:center;
+    position:relative;padding-top:90px;
+    background:
+      radial-gradient(ellipse 70% 50% at 80% 0%, rgba(201,162,75,0.16), transparent 60%),
+      var(--ink);
+  }
+  .hero-eyebrow{
+    font-size:13px;letter-spacing:0.18em;text-transform:uppercase;
+    color:var(--brass);margin-bottom:24px;display:flex;align-items:center;gap:14px;
+  }
+  .hero-eyebrow::before{content:'';width:36px;height:1px;background:var(--brass);}
+  .hero h1{
+    font-size:clamp(48px,8vw,104px);
+    line-height:0.98;letter-spacing:-0.01em;
+    max-width:920px;
+  }
+  .hero h1 em{font-style:italic;color:var(--brass);font-weight:400;}
+  .hero-sub{
+    margin-top:28px;max-width:480px;font-size:17px;color:rgba(244,238,227,0.7);
+  }
+  .hero-actions{display:flex;gap:16px;margin-top:44px;flex-wrap:wrap;}
+  .btn-primary{
+    background:var(--brass);color:var(--ink);padding:16px 32px;
+    font-size:14px;letter-spacing:0.03em;font-weight:600;
+    border:1px solid var(--brass);transition:background .2s,color .2s;
+  }
+  .btn-primary:hover{background:transparent;color:var(--brass);}
+  .btn-ghost{
+    border:1px solid var(--line-strong);padding:16px 32px;
+    font-size:14px;letter-spacing:0.03em;transition:border-color .2s,background .2s;
+  }
+  .btn-ghost:hover{border-color:var(--brass);background:rgba(201,162,75,0.06);}
+
+  .hero-stats{
+    display:flex;gap:64px;margin-top:96px;flex-wrap:wrap;
+    border-top:1px solid var(--line);padding-top:36px;
+  }
+  .stat-num{font-family:'Fraunces',serif;font-size:38px;color:var(--brass);}
+  .stat-label{font-size:13px;color:rgba(244,238,227,0.55);margin-top:6px;letter-spacing:0.02em;}
+
+  /* ---------- section shared ---------- */
+  section{padding:140px 0;position:relative;}
+  .section-head{
+    display:flex;justify-content:space-between;align-items:flex-end;
+    margin-bottom:64px;gap:40px;flex-wrap:wrap;
+  }
+  .eyebrow{
+    font-size:13px;letter-spacing:0.18em;text-transform:uppercase;color:var(--brass);
+    display:flex;align-items:center;gap:14px;margin-bottom:18px;
+  }
+  .eyebrow::before{content:'';width:36px;height:1px;background:var(--brass);}
+  .section-head h2{font-size:clamp(32px,4vw,52px);max-width:560px;line-height:1.05;}
+  .section-sub{max-width:360px;color:rgba(244,238,227,0.6);font-size:15px;}
+
+  /* ---------- directory / signature element ---------- */
+  .directory{
+    background:var(--ink-soft);
+    border:1px solid var(--line);
+  }
+  .directory-board{
+    border:1px solid var(--line-strong);
+    padding:0;
+  }
+  .directory-row{
+    display:grid;grid-template-columns:90px 1fr 160px 140px;
+    align-items:center;
+    padding:26px 32px;
+    border-bottom:1px solid var(--line);
+    transition:background .2s;
+    gap:16px;
+  }
+  .directory-row:last-child{border-bottom:none;}
+  .directory-row:hover{background:rgba(201,162,75,0.05);}
+  .directory-row.head{
+    color:rgba(244,238,227,0.45);font-size:12px;letter-spacing:0.1em;text-transform:uppercase;
+    padding-top:18px;padding-bottom:18px;
+  }
+  .unit-no{
+    font-family:'Fraunces',serif;color:var(--brass);font-size:20px;
+  }
+  .unit-name{font-size:17px;}
+  .unit-trade{font-size:13px;color:rgba(244,238,227,0.5);margin-top:3px;}
+  .unit-size{font-size:14px;color:rgba(244,238,227,0.7);}
+  .status-pill{
+    font-size:12px;letter-spacing:0.04em;padding:6px 14px;border-radius:2px;
+    display:inline-flex;align-items:center;gap:7px;width:fit-content;
+  }
+  .status-pill::before{content:'';width:6px;height:6px;border-radius:50%;}
+  .status-available{color:#9CC08A;background:rgba(156,192,138,0.1);}
+  .status-available::before{background:#9CC08A;}
+  .status-leased{color:rgba(244,238,227,0.4);background:rgba(244,238,227,0.05);}
+  .status-leased::before{background:rgba(244,238,227,0.3);}
+  .status-coming{color:var(--brass);background:rgba(201,162,75,0.1);}
+  .status-coming::before{background:var(--brass);}
+  .directory-loading{color:rgba(244,238,227,0.55);grid-column:1/-1;}
+  .directory-error{color:#d98989;grid-column:1/-1;}
+  .shop-enquire-btn{justify-self:start;border:1px solid var(--line-strong);background:transparent;color:var(--brass);padding:8px 12px;font:inherit;font-size:12px;cursor:pointer;}
+  .shop-enquire-btn:hover{background:rgba(201,162,75,0.08);}
+  .form-error{display:none;color:#d98989;font-size:13px;margin-top:12px;}
+
+  /* ---------- gallery ---------- */
+  .gallery-grid{
+    display:grid;grid-template-columns:1.3fr 1fr 1fr;grid-template-rows:240px 240px;
+    gap:14px;
+  }
+  .gallery-grid .ph:nth-child(1){grid-row:1/3;}
+  .ph{
+    background:linear-gradient(135deg, #2A2620, #1A1813);
+    border:1px solid var(--line);
+    display:flex;align-items:flex-end;padding:20px;
+    font-size:13px;color:rgba(244,238,227,0.45);letter-spacing:0.05em;
+    position:relative;overflow:hidden;
+  }
+  .ph::after{
+    content:'';position:absolute;inset:0;
+    background:radial-gradient(circle at 30% 20%, rgba(201,162,75,0.08), transparent 60%);
+  }
+
+  /* ---------- amenities ---------- */
+  .amenity-grid{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
+    background:var(--line);border:1px solid var(--line);
+  }
+  .amenity{
+    background:var(--ink);padding:40px 28px;
+  }
+  .amenity-icon{
+    width:38px;height:38px;border:1px solid var(--brass);border-radius:50%;
+    display:flex;align-items:center;justify-content:center;color:var(--brass);
+    font-family:'Fraunces',serif;font-size:16px;margin-bottom:24px;
+  }
+  .amenity h3{font-size:17px;margin-bottom:10px;font-weight:500;}
+  .amenity p{font-size:14px;color:rgba(244,238,227,0.55);}
+
+  /* ---------- location ---------- */
+  .location-section{
+    display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;
+  }
+  .loc-list{margin-top:32px;}
+  .loc-item{
+    display:flex;justify-content:space-between;padding:18px 0;
+    border-bottom:1px solid var(--line);font-size:15px;
+  }
+  .loc-item span:last-child{color:var(--brass);}
+  .map-ph{
+    height:420px;background:var(--ink-soft);border:1px solid var(--line);
+    position:relative;
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size:40px 40px;
+  }
+  .map-pin{
+    position:absolute;top:48%;left:54%;width:14px;height:14px;background:var(--brass);
+    border-radius:50% 50% 50% 0;transform:rotate(-45deg);
+  }
+  .map-pin::after{
+    content:'';position:absolute;inset:-18px;border:1px solid var(--brass);
+    border-radius:50%;opacity:0.3;
+  }
+
+  /* ---------- inquiry ---------- */
+  .inquiry-wrap{
+    display:grid;grid-template-columns:0.9fr 1.1fr;gap:80px;
+  }
+  .inquiry-side h2{font-size:clamp(30px,3.6vw,46px);line-height:1.08;}
+  .inquiry-side p{margin-top:20px;color:rgba(244,238,227,0.6);font-size:15px;max-width:380px;}
+  .contact-line{margin-top:40px;font-size:14px;color:rgba(244,238,227,0.7);}
+  .contact-line strong{color:var(--bone);display:block;font-size:15px;margin-bottom:4px;font-weight:500;}
+  .contact-block{margin-bottom:24px;}
+
+  form{display:flex;flex-direction:column;gap:22px;}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:22px;}
+  label{
+    font-size:12px;letter-spacing:0.08em;text-transform:uppercase;
+    color:rgba(244,238,227,0.5);margin-bottom:8px;display:block;
+  }
+  input,select,textarea{
+    width:100%;background:transparent;border:none;border-bottom:1px solid var(--line-strong);
+    color:var(--bone);font-family:'Manrope',sans-serif;font-size:15px;
+    padding:10px 2px;outline:none;transition:border-color .2s;
+  }
+  input::placeholder,textarea::placeholder{color:rgba(244,238,227,0.3);}
+  input:focus,select:focus,textarea:focus{border-color:var(--brass);}
+  select option{background:var(--ink);}
+  textarea{resize:vertical;min-height:90px;}
+  .submit-btn{
+    margin-top:8px;background:var(--brass);color:var(--ink);
+    border:1px solid var(--brass);padding:17px 32px;font-size:14px;font-weight:600;
+    letter-spacing:0.03em;cursor:pointer;transition:background .2s,color .2s;
+    align-self:flex-start;
+  }
+  .submit-btn:hover{background:transparent;color:var(--brass);}
+  .form-note{font-size:12px;color:rgba(244,238,227,0.4);margin-top:-6px;}
+  .form-success{
+    display:none;border:1px solid var(--brass);padding:20px 24px;color:var(--brass);font-size:14px;
+  }
+
+  /* ---------- footer ---------- */
+  footer{
+    border-top:1px solid var(--line);padding:64px 0 36px;
+  }
+  .footer-top{
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:40px;margin-bottom:56px;
+  }
+  .footer-cols{display:flex;gap:80px;flex-wrap:wrap;}
+  .footer-col h4{
+    font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(244,238,227,0.45);
+    margin-bottom:18px;
+  }
+  .footer-col a{display:block;font-size:14px;margin-bottom:11px;color:rgba(244,238,227,0.75);}
+  .footer-col a:hover{color:var(--brass);}
+  .footer-bottom{
+    display:flex;justify-content:space-between;border-top:1px solid var(--line);
+    padding-top:28px;font-size:13px;color:rgba(244,238,227,0.4);flex-wrap:wrap;gap:12px;
+  }
+
+  /* ---------- reveal animation ---------- */
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease;}
+  .reveal.in{opacity:1;transform:translateY(0);}
+
+  /* ---------- responsive ---------- */
+  @media (max-width:900px){
+    .navlinks{display:none;}
+    .hero-stats{gap:36px;}
+    .gallery-grid{grid-template-columns:1fr 1fr;grid-template-rows:180px 180px 180px;}
+    .gallery-grid .ph:nth-child(1){grid-row:auto;grid-column:1/3;height:220px;}
+    .amenity-grid{grid-template-columns:1fr 1fr;}
+    .location-section{grid-template-columns:1fr;}
+    .inquiry-wrap{grid-template-columns:1fr;gap:48px;}
+    .form-row{grid-template-columns:1fr;}
+    .directory-row{grid-template-columns:50px 1fr;}
+    .directory-row .unit-size,.directory-row.head span:nth-child(3){display:none;}
+    .directory-row .status-pill{grid-column:2;margin-top:8px;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="logo">DPY <span>Complex </span></div>
+    <div class="navlinks">
+      <a href="#shops">Available shops</a>
+      <a href="#amenities">Amenities</a>
+      <a href="#location">Location</a>
+      <a href="#inquire">Contact</a>
+    </div>
+    <a href="#inquire" class="nav-cta">Enquire now</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-eyebrow">Now leasing — Phase I</div>
+    <h1>A stage for <em>brands</em><br>that mean business.</h1>
+    <p class="hero-sub">DPY Complex is a 7500 sq ft retail complex built for footfall, visibility, and lasting tenancies — twelve units remaining across the ground and first floor.</p>
+    <div class="hero-actions">
+      <a href="#shops" class="btn-primary">View available shops</a>
+      <a href="#inquire" class="btn-ghost">Book a site visit</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">7500</div>
+        <div class="stat-label">Sq ft of leasable retail</div>
+      </div>
+      <div>
+        <div class="stat-num">18</div>
+        <div class="stat-label">Total units across two floors</div>
+      </div>
+      <div>
+        <div class="stat-num">70%</div>
+        <div class="stat-label">Occupancy rate</div>
+      </div>
+      <div>
+        <div class="stat-num">50K+</div>
+        <div class="stat-label">Daily footfall, average</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="shops">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div>
+        <div class="eyebrow">Tenant directory</div>
+        <h2>Spaces ready for your next chapter.</h2>
+      </div>
+      <p class="section-sub">A live snapshot of the building directory — sizes, status, and category for each unit. Full floor plans shared on request.</p>
+    </div>
+
+    <div class="directory reveal">
+      <div class="directory-board">
+        <div class="directory-row head">
+          <span>Unit</span><span>Tenant / category</span><span>Carpet area</span><span>Status</span>
+        </div>
+        <div id="shopDirectoryRows">
+          <div class="directory-row">
+            <span style="grid-column:1/-1;color:rgba(244,238,227,0.55);">Loading live shop data…</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div>
+        <div class="eyebrow">The complex</div>
+        <h2>Built around how people actually shop.</h2>
+      </div>
+      <p class="section-sub">A central atrium, wide circulation paths, and anchor-led zoning designed to keep every unit in the line of sight.</p>
+    </div>
+    <div class="gallery-grid reveal">
+      <div class="ph">Central atrium &amp; skylight</div>
+      <div class="ph">Ground floor frontage</div>
+      <div class="ph">Parking &amp; drop-off court</div>
+      <div class="ph">Evening façade lighting</div>
+      <div class="ph">First floor promenade</div>
+    </div>
+  </div>
+</section>
+
+<section id="amenities">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div>
+        <div class="eyebrow">Tenant amenities</div>
+        <h2>Everything a tenancy needs, on site.</h2>
+      </div>
+    </div>
+    <div class="amenity-grid reveal">
+      <div class="amenity">
+        <div class="amenity-icon">P</div>
+        <h3>100-car basement parking</h3>
+        <p>Valet and self-park, with dedicated loading bays for deliveries.</p>
+      </div>
+      <div class="amenity">
+        <div class="amenity-icon">S</div>
+        <h3>24/7 security &amp; CCTV</h3>
+        <p>Manned entry points and full-perimeter coverage, year-round.</p>
+      </div>
+      <div class="amenity">
+        <div class="amenity-icon">C</div>
+        <h3>Centralised cooling</h3>
+        <p>Building-wide HVAC included in common area maintenance.</p>
+      </div>
+      <div class="amenity">
+        <div class="amenity-icon">F</div>
+        <h3>Fibre &amp; POS-ready</h3>
+        <p>Pre-wired units with dedicated fibre lines and power backup.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="location">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div>
+        <div class="eyebrow">Location</div>
+        <h2>Where the traffic already is.</h2>
+      </div>
+    </div>
+    <div class="location-section reveal">
+      <div>
+        <p style="color:rgba(244,238,227,0.6);max-width:420px;">Positioned at the junction of two arterial roads, with direct access from the metro station and a strong residential catchment within a 5 km radius.</p>
+        <div class="loc-list">
+          <div class="loc-item"><span>Bus Stand </span><span>1.5 Km </span></div>
+          <div class="loc-item"><span>Arterial Main Road access</span><span>Direct</span></div>
+          <div class="loc-item"><span>Residential catchment (5 km)</span><span>250,000+</span></div>
+          <div class="loc-item"><span>Nearest business City (Kurnool)</span><span>90 min drive</span></div>
+        </div>
+      </div>
+      <div class="map-ph">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3844.970241670315!2d78.48853807516963!3d15.48603278511206!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bb5adc81f6c509b%3A0x557ff94123893e27!2sDamam%20Pedda%20Yellappa%20COMPLEX!5e0!3m2!1sen!2sin!4v1791269474658!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin">
+
+      </iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="inquire">
+  <div class="wrap">
+    <div class="inquiry-wrap">
+      <div class="inquiry-side reveal">
+        <div class="eyebrow">Leasing enquiry</div>
+        <h2>Let's find your unit.</h2>
+        <p>Tell us what you're looking for — category, size, budget — and our leasing team will reply within one business day with available options and floor plans.</p>
+        <div class="contact-block">
+          <div class="contact-line"><strong>Leasing office</strong>Mon–Sat, 09:00–18:00</div>
+        </div>
+        <div class="contact-block">
+          <div class="contact-line"><strong>Phone</strong>+91 9966358843</div>
+        </div>
+        <div class="contact-block">
+          <div class="contact-line"><strong>Email</strong>govindagoutham86@gmail.com</div>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <form id="inquiryForm">
+          <div class="form-row">
+            <div>
+              <label for="name">Full name</label>
+              <input type="text" id="name" placeholder="Your name" required>
+            </div>
+            <div>
+              <label for="company">Business name</label>
+              <input type="text" id="company" placeholder="Your brand or company">
+            </div>
+          </div>
+          <div class="form-row">
+            <div>
+              <label for="phone">Phone</label>
+              <input type="tel" id="phone" placeholder="+91 00000 00000" required>
+            </div>
+            <div>
+              <label for="email">Email</label>
+              <input type="email" id="email" placeholder="you@example.com" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div>
+              <label for="category">Category of interest</label>
+              <select id="category">
+                <option>Fashion &amp; apparel</option>
+                <option>Food &amp; beverage</option>
+                <option>Electronics</option>
+                <option>Salon &amp; spa</option>
+                <option>Home &amp; living</option>
+                <option>Leisure &amp; entertainment</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div>
+              <label for="size">Preferred size</label>
+              <select id="size">
+                <option>Under 1,000 sq ft</option>
+                <option>1,000 – 2,000 sq ft</option>
+                <option>2,000 – 4,000 sq ft</option>
+                <option>4,000+ sq ft</option>
+              </select>
+            </div>
+          </div>
+          <div>
+            <label for="shop">Unit of interest</label>
+            <select id="shop">
+              <option value="">No specific unit</option>
+            </select>
+          </div>
+          <div>
+            <label for="message">Message</label>
+            <textarea id="message" placeholder="Tell us a bit about your business and what you're looking for"></textarea>
+          </div>
+          <p class="form-note">We'll only use these details to respond to your enquiry.</p>
+          <button type="submit" class="submit-btn">Send enquiry</button>
+          <div class="form-error" id="formError" role="alert"></div>
+          <div class="form-success" id="formSuccess">Thank you — your enquiry has been received. Our leasing team will be in touch within one business day.</div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <div>
+        <div class="logo">DPY <span>Complex </span></div>
+        <p style="max-width:280px;color:rgba(244,238,227,0.5);font-size:14px;margin-top:16px;">A premium retail complex with 48 units across two floors, now leasing.</p>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <a href="#shops">Available shops</a>
+          <a href="#amenities">Amenities</a>
+          <a href="#location">Location</a>
+        </div>
+        <div class="footer-col">
+          <h4>Leasing</h4>
+          <a href="#inquire">Enquire now</a>
+          <a href="#">Download floor plans</a>
+          <a href="#">Tenant mix</a>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <a href="tel:+919966358843">+91 9966358843</a>
+          <a href="mailto:govindagoutham86@gmail.com">govindagoutham86@gmail.com</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 DPY Complex. All rights reserved.</span>
+      <span>Placeholder content — replace with your complex's details.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // API connection modes:
+  // 1. Production / same-origin hosting -> use the current website origin.
+  // 2. VS Code Live Server (e.g. localhost:5500) -> use the local backend on :4000.
+  // 3. Opening index.html directly (file://) -> use the local backend on :4000.
+  // 4. A separately hosted API can be supplied with window.DPY_API_BASE.
+  const configuredApiBase = window.DPY_API_BASE || '';
+  const isLocalDev = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+  const isDirectFile = window.location.protocol === 'file:';
+  const API_BASE = configuredApiBase
+    ? configuredApiBase.replace(/\/$/, '')
+    : (isDirectFile || (isLocalDev && window.location.port !== '4000')
+        ? 'http://localhost:4000'
+        : '');
+  const form = document.getElementById('inquiryForm');
+  const success = document.getElementById('formSuccess');
+  const errorBox = document.getElementById('formError');
+  const submitBtn = form.querySelector('.submit-btn');
+  const shopDirectoryRows = document.getElementById('shopDirectoryRows');
+  const shopSelect = document.getElementById('shop');
+  let liveShops = [];
+
+  function escapeHtml(value) {
+    return String(value ?? '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
+  }
+
+  function statusLabel(status) {
+    return {
+      available: 'Available',
+      leased: 'Leased',
+      coming_soon: 'Coming soon'
+    }[status] || status;
+  }
+
+  function statusClass(status) {
+    return {
+      available: 'status-available',
+      leased: 'status-leased',
+      coming_soon: 'status-coming'
+    }[status] || 'status-leased';
+  }
+
+  function renderShopDirectory(shops) {
+    if (!shops.length) {
+      shopDirectoryRows.innerHTML = '<div class="directory-row"><span class="directory-error">No shop data is currently available.</span></div>';
+      return;
+    }
+
+    shopDirectoryRows.innerHTML = shops.map(shop => `
+      <div class="directory-row">
+        <span class="unit-no">${escapeHtml(shop.unit_no)}</span>
+        <div>
+          <div class="unit-name">${escapeHtml(shop.name)}</div>
+          <div class="unit-trade">${escapeHtml(shop.category)}</div>
+        </div>
+        <span class="unit-size">${Number(shop.size_sqft).toLocaleString('en-IN')} sq ft</span>
+        <div>
+          <span class="status-pill ${statusClass(shop.status)}">${escapeHtml(statusLabel(shop.status))}</span>
+          ${shop.status === 'available' ? `<button type="button" class="shop-enquire-btn" data-shop-id="${Number(shop.id)}">Enquire</button>` : ''}
+        </div>
+      </div>
+    `).join('');
+
+    shopDirectoryRows.querySelectorAll('.shop-enquire-btn').forEach(button => {
+      button.addEventListener('click', () => {
+        shopSelect.value = button.dataset.shopId;
+        document.getElementById('inquire').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+  }
+
+  function updateShopSelect(shops) {
+    const previous = shopSelect.value;
+    shopSelect.innerHTML = '<option value="">No specific unit</option>' + shops.map(shop => `
+      <option value="${Number(shop.id)}">${escapeHtml(shop.unit_no)} — ${escapeHtml(shop.name)} (${escapeHtml(statusLabel(shop.status))})</option>
+    `).join('');
+    if (shops.some(shop => String(shop.id) === previous)) shopSelect.value = previous;
+  }
+
+  async function loadShops() {
+    try {
+      const res = await fetch(`${API_BASE}/api/shops`, { cache: 'no-store' });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Unable to load shop data');
+      liveShops = data;
+      renderShopDirectory(liveShops);
+      updateShopSelect(liveShops);
+    } catch (err) {
+      console.error('Shop directory load failed:', err);
+      if (!liveShops.length) {
+        shopDirectoryRows.innerHTML = '<div class="directory-row"><span class="directory-error">Unable to load live shop data. Please refresh or try again later.</span></div>';
+      }
+    }
+  }
+
+  form.addEventListener('submit', async function(e){
+    e.preventDefault();
+    errorBox.style.display = 'none';
+    errorBox.textContent = '';
+
+    if (!form.reportValidity()) return;
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending…';
+
+    const payload = {
+      name: document.getElementById('name').value.trim(),
+      company: document.getElementById('company').value.trim(),
+      phone: document.getElementById('phone').value.trim(),
+      email: document.getElementById('email').value.trim(),
+      category: document.getElementById('category').value,
+      preferred_size: document.getElementById('size').value,
+      message: document.getElementById('message').value.trim(),
+      shop_id: shopSelect.value || null
+    };
+
+    try {
+      const res = await fetch(`${API_BASE}/api/inquiries`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(data.error || 'Unable to submit your enquiry.');
+
+      form.style.display = 'none';
+      success.textContent = data.emailSent
+        ? 'Thank you — your enquiry has been received. Our leasing team will be in touch within one business day.'
+        : 'Thank you — your enquiry has been saved successfully. Our leasing team will be in touch, although email notification is currently unavailable.';
+      success.style.display = 'block';
+    } catch (err) {
+      console.error('Enquiry submission failed:', err);
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Send enquiry';
+      errorBox.textContent = err.message || 'Something went wrong sending your enquiry. Please try again.';
+      errorBox.style.display = 'block';
+    }
+  });
+
+  // Load the database-backed directory immediately and refresh it periodically.
+  // This means changes made in SQLite are reflected on the website without
+  // editing index.html and without requiring a full page reload.
+  loadShops();
+  setInterval(loadShops, 15000);
+
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  },{threshold:0.15});
+  revealEls.forEach(el=>io.observe(el));
+</script>
+
+</body>
+</html>

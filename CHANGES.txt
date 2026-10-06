@@ -1,0 +1,32 @@
+DPY Complex fixed package
+
+Active files:
+- index.html
+- server.js
+- db.js
+- mailer.js
+- package.json
+- .env.example
+- .gitignore
+- README.md
+
+Original copies:
+- index.original.html
+- server.original.js
+- db.original.js
+- mailer.original.js
+- package.original.json
+
+Main fixes:
+- The six shop entries from the supplied HTML are preserved as initial database data.
+- The shop directory is now generated from SQLite via /api/shops.
+- The enquiry unit selector is generated from the same database.
+- Database shop updates therefore appear on the website on the next page load.
+- The enquiry form sends shop_id to the backend.
+- Backend validation and selected-shop validation were strengthened.
+- SQLite foreign keys are enabled.
+- Email failures are handled independently for the leasing team and customer.
+- The frontend now reads useful API error messages.
+- The backend serves index.html, so the frontend can use same-origin /api calls.
+- Old Aurelia Square naming was removed from the active project files.
+- The obvious unit-count/footer contradiction and grammar issue were corrected without inventing new project data.
